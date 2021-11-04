@@ -1,7 +1,50 @@
+
 <!DOCTYPE html>
 <html>
-<body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+    <head>
+        <meta charset="UTF-8">
+        <title>CreateScriptGUI</title>
+    </head>
+    <body>
+        <p>hello!</p>
+        <script src="blockly/lib/blockly_compressed.js"></script>
+        <script src="blockly/lib/blocks_compressed.js"></script>
+        <script src="blockly/lib/javascript_compressed.js"></script>
+        <script src="blockly/lib/python_compressed.js"></script>
+        <script src="blockly/lib/en.js"></script>
+        <script src="blocks.js"></script>
+        <script src="blockly.js"></script>
+        
+        
+        <!--  ************************ Blocks **************************** -->
+        
+        
+        
+        <!--  ************************ Toolbox **************************** -->
+        <script type="text/javascript" src="developer/toolbox.js"></script>
+        
+        <!--  ************** Blockly Workspace definition ***************** -->
+        <script src="developer/workspace.js"></script>
+        
+        <link rel="stylesheet" href="design.css">
+        
+        <div class="wrap">
+            <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
+            <div class="code_style" id="code"></div>
+        </div>
+        <script>
+        var workspace = Blockly.inject('blocklyDiv',options)
+        function myUpdateFunction(event) {
+        var code = Blockly.JavaScript.workspaceToCode(workspace);
+        document.getElementById('code').innerHTML = '<pre><font size="4" face="Consolas">' + code + '</font></pre>';
+        // const json_code = JSON.stringify(code);
+        // var link = document.createElement("a");
+        // link.hrel = 'data:text/plain,' + encodeURIComponent(json_code);
+        // a.download = "save_test.json"
+        // a.click()
+    }
+    workspace.addChangeListener(myUpdateFunction);
+    
+      </script>
 </body>
 </html>
