@@ -32,9 +32,10 @@
         <div class="wrap">
             <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
             <div class="code_style" id="code"></div>
-            <button type="button" onclick="save">download</button>
         </div>
+        <button type="button">download</button>
         <script>
+            
     var workspace = Blockly.inject('blocklyDiv',options)
     function myUpdateFunction(event) {
         var code = Blockly.JavaScript.workspaceToCode(workspace);
@@ -55,7 +56,8 @@
         var codej = JSON.parse(code)
         download(JSON.stringify(codej),theaterScript.json,'text/plain')
     }
-    
+    let button = document.getElementById('button');
+    button.onclick = save;
 
       </script>
 
