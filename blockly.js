@@ -22,7 +22,7 @@ Blockly.JavaScript['define'] = function(block) {
                 + '",\n\t"location":' 
                 + '\n\t\t{\n\t\t\t"x":' + number_location_x
                 + ',\n\t\t\t"y":' + number_location_y
-                + '\n\t\t}\n\t},';
+                + '\n\t\t}\n\t}';
   return code;
 };
 Blockly.JavaScript['word'] = function(block) {
