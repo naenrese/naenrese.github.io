@@ -33,9 +33,9 @@
             <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
             <div class="code_style" id="code"></div>
         </div>
-        <button type="button">download</button>
+        <button type="button" id="button">download</button>
         <script>
-            
+
     var workspace = Blockly.inject('blocklyDiv',options)
     function myUpdateFunction(event) {
         var code = Blockly.JavaScript.workspaceToCode(workspace);
