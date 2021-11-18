@@ -53,8 +53,8 @@
     }
     function save() {
         var code = Blockly.JavaScript.workspaceToCode(workspace);
-        var codej = JSON.parse(code)
-        download(JSON.stringify(codej),theaterScript.json,'text/plain')
+        var codej = JSON.parse(code);
+        download(JSON.stringify(codej),theaterScript.json,'text/plain');
     }
     let button = document.getElementById('button');
     button.onclick = save;
