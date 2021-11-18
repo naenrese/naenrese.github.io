@@ -7,6 +7,7 @@
     </head>
     <body>
         <p>hello!</p>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
         <script src="blockly/lib/blockly_compressed.js"></script>
         <script src="blockly/lib/blocks_compressed.js"></script>
         <script src="blockly/lib/javascript_compressed.js"></script>
@@ -32,7 +33,6 @@
             <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
             <div class="code_style" id="code"></div>
         </div>
-        <p><button id="button1">Download</button></p>
         <script>
     var workspace = Blockly.inject('blocklyDiv',options)
     function myUpdateFunction(event) {
@@ -41,19 +41,20 @@
     }
     workspace.addChangeListener(myUpdateFunction);
 
-    const button = document.querySelector('button1');
-    button.onclick = function() {
-        var xml = Blockly.Xml.workspaceToDom(workspace);
-        var myBlockXml = Blockly.Xml.domToText(xml); 
-        let blob = new Blob([myBlockXml],{type: 'text/xml'});
-        let a = document.createElement("a");
-        a.href=URL.createObjectURL(blob);
-        document.body.appendChild(a); // Firefoxで必要
-        a.download='test.xml';
-        a.click();
-        document.body.removeChild(a); // Firefoxで必要
-        URL.revokeObjectURL(a.href)
-    }
       </script>
+
+
+      <!-- Vueを使ってみる -->
+      <!-- <div id= "app">
+          {{ message }}
+      </div>
+      <script>
+          var app = new Vue({
+              el: '#app',
+              data: {
+                  message: 'hello Vue!'
+              }
+          })
+      </script> -->
 </body>
 </html>

@@ -37,7 +37,7 @@ Blockly.Blocks['define'] = {
         .appendField(new Blockly.FieldNumber(0), "location_y");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setColour(290);
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -56,7 +56,29 @@ Blockly.Blocks['word'] = {
         .appendField(new Blockly.FieldNumber(0), "time");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setColour(160);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Blocks['location'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("name")
+        .appendField(new Blockly.FieldTextInput("default"), "name")
+        .appendField("location")
+        .appendField("x")
+        .appendField(new Blockly.FieldNumber(0), "location_x")
+        .appendField("y")
+        .appendField(new Blockly.FieldNumber(0), "location_y");
+    this.appendDummyInput()
+        .appendField("timing")
+        .appendField(new Blockly.FieldDropdown([["nexttime","nexttime"], ["sametime","sametime"]]), "timeFlag")
+        .appendField("time[ms]")
+        .appendField(new Blockly.FieldNumber(0), "time");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(160);
  this.setTooltip("");
  this.setHelpUrl("");
   }
