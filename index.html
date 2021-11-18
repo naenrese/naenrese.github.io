@@ -32,6 +32,7 @@
         <div class="wrap">
             <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
             <div class="code_style" id="code"></div>
+            <button type="button" onclick="save">download</button>
         </div>
         <script>
     var workspace = Blockly.inject('blocklyDiv',options)
@@ -40,6 +41,21 @@
         document.getElementById('code').innerHTML = '<pre><font size="4" face="Consolas">' + code + '</font></pre>';
     }
     workspace.addChangeListener(myUpdateFunction);
+
+    // download file
+    function download(content, fileName, contentType) {
+        var a = document.createElement("a");
+        var file = new Blob([content], { type: contentType });
+        a.href = URL.createObjectURL(file);
+        a.download = fileName;
+        a.click();
+    }
+    function save() {
+        var code = Blockly.JavaScript.workspaceToCode(workspace);
+        var codej = JSON.parse(code)
+        download(JSON.stringify(codej),theaterScript.json,'text/plain')
+    }
+    
 
       </script>
 
