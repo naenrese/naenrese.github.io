@@ -10,7 +10,8 @@ Blockly.JavaScript['script_create'] = function(block) {
   // TODO: Assemble JavaScript into code variable.
   var code = '{\n\t"name": "' + text_name + '",\n\t"define": [' + statements_define 
                 + '\n\t],\n\t"scripts": [\n' + statements_name + '\n\t]\n}';
-  return code;
+  var codej = {"name":text_name,"define":[statements_define],"script":[statements_define]};
+  return codej;
 };
 Blockly.JavaScript['define'] = function(block) {
   var text_name = block.getFieldValue('name');
@@ -23,7 +24,8 @@ Blockly.JavaScript['define'] = function(block) {
                 + '\n\t\t{\n\t\t\t"x":' + number_location_x
                 + ',\n\t\t\t"y":' + number_location_y
                 + '\n\t\t}\n\t}';
-  return code;
+  var codej = {"name":text_name,"type":dropdown_who,"location":{"x":number_location_x,"y":number_location_y}};
+  return codej;
 };
 Blockly.JavaScript['word'] = function(block) {
   var text_name = block.getFieldValue('name');
@@ -33,7 +35,8 @@ Blockly.JavaScript['word'] = function(block) {
   // TODO: Assemble JavaScript into code variable.
   var code = '\n\t{\n\t"mode":"word",\n\t"name":"' + text_name + '",\n\t"word":"' + text_word + '",'
               + '\n\t"timeFlag":"' + dropdown_timeflag + '",\n\t"time":' + number_time + '\n\t},';
-  return code;
+  var codej = {"mode":"word","name":text_name,"word":text_word,"timeFlag":dropdown_timeflag,"time":number_time}
+  return codej;
 };
 Blockly.JavaScript['location'] = function(block) {
   var text_name = block.getFieldValue('name');
@@ -48,5 +51,7 @@ Blockly.JavaScript['location'] = function(block) {
   + ',\n\t\t\t"y":' + number_location_y
   + '\n\t\t},' + '\n\t"timeFlag":"' + dropdown_timeflag 
   + '",\n\t"time":' + number_time + '\n\t},';
-  return code;
+  var codej = {"mode":"location","name":text_name,"location":{"x":number_location_x,"y":number_location_y}
+                ,"timeFlag":dropdown_timeflag,"time":number_time}
+  return codej;
 };
