@@ -38,8 +38,7 @@
 
     var workspace = Blockly.inject('blocklyDiv',options)
     function myUpdateFunction(event) {
-        let codej = Blockly.JavaScript.workspaceToCode(workspace);
-        code = JSON.stringify(codej,null,"\t")
+        let code = Blockly.JavaScript.workspaceToCode(workspace);
         document.getElementById('code').innerHTML = '<pre><font size="4" face="Consolas">' + code + '</font></pre>';
     }
     workspace.addChangeListener(myUpdateFunction);
@@ -53,7 +52,8 @@
         a.click();
     }
     function save() {
-        var codej = Blockly.JavaScript.workspaceToCode(workspace);
+        var code = Blockly.JavaScript.workspaceToCode(workspace);
+        var codej = JSON.parse(code)
         download(JSON.stringify(codej),'theaterScript.json','text/plain');
     }
     let button = document.getElementById('button');
