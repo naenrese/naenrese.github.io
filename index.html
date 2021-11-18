@@ -39,7 +39,7 @@
     var workspace = Blockly.inject('blocklyDiv',options)
     function myUpdateFunction(event) {
         let codej = Blockly.JavaScript.workspaceToCode(workspace);
-        let code = JSON.stringify(codej,null,"\t")
+        code = JSON.stringify(codej,null,"\t")
         document.getElementById('code').innerHTML = '<pre><font size="4" face="Consolas">' + code + '</font></pre>';
     }
     workspace.addChangeListener(myUpdateFunction);
