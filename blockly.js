@@ -1,3 +1,18 @@
+function convertJSON(list){
+  console.log(list)
+  var json_list = []
+  for (index = 0; index < list.length - 1; ++index) {
+    try {
+      json_list.push(JSON.parse(list[index]))
+    }
+    catch (e) {
+      json_list.push(list[index])
+    }
+  }
+    json_data = JSON.stringify(json_list,null,"\t")
+    return json_data
+}
+
 Blockly.JavaScript['test_block'] = function(block) {
   // TODO: Assemble JavaScript into code variable.
   var code = '\n\taaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa;\n';
@@ -7,10 +22,19 @@ Blockly.JavaScript['script_create'] = function(block) {
   var text_name = block.getFieldValue('script_name');
   var statements_define = Blockly.JavaScript.statementToCode(block, 'define');
   var statements_name = Blockly.JavaScript.statementToCode(block, 'script');
+  
+
+  // 正式なJSONのフォーマットにする部分(define)
+  var list_define =  statements_define.split("#...#");
+  var text_statements_define = convertJSON(list_define)
+
+   // 正式なJSONのフォーマットにする部分(script)
+  var list_script =  statements_name.split("#...#");
+  var text_statements_script = convertJSON(list_script) 
+
   // TODO: Assemble JavaScript into code variable.
-  var code = '{\n\t"name": "' + text_name + '",\n\t"define": [' + statements_define 
-                + '\n\t],\n\t"scripts": [\n' + statements_name + '\n\t]\n}';
-  var codej = {"name":text_name,"define":[statements_define],"scripts":[statements_define]};
+  var code = '{\n\t"name": "' + text_name + '",\n\t"define":' + text_statements_define 
+                + '\n\t,\n\t"scripts":' + text_statements_script + '\n}';
   return code;
 };
 Blockly.JavaScript['define'] = function(block) {
@@ -23,8 +47,7 @@ Blockly.JavaScript['define'] = function(block) {
                 + '",\n\t"location":' 
                 + '\n\t\t{\n\t\t\t"x":' + number_location_x
                 + ',\n\t\t\t"y":' + number_location_y
-                + '\n\t\t}\n\t}';
-  var codej = {"name":text_name,"type":dropdown_who,"location":{"x":number_location_x,"y":number_location_y}};
+                + '\n\t\t}\n\t}' + "#...#";
   return code;
 };
 Blockly.JavaScript['word'] = function(block) {
@@ -34,8 +57,7 @@ Blockly.JavaScript['word'] = function(block) {
   var number_time = block.getFieldValue('time');
   // TODO: Assemble JavaScript into code variable.
   var code = '\n\t{\n\t"mode":"word",\n\t"name":"' + text_name + '",\n\t"word":"' + text_word + '",'
-              + '\n\t"timeFlag":"' + dropdown_timeflag + '",\n\t"time":' + number_time + '\n\t}';
-  var codej = {"mode":"word","name":text_name,"word":text_word,"timeFlag":dropdown_timeflag,"time":number_time}
+              + '\n\t"timeFlag":"' + dropdown_timeflag + '",\n\t"time":' + number_time + '\n\t}' + "#...#";
   return code;
 };
 Blockly.JavaScript['location'] = function(block) {
@@ -50,8 +72,6 @@ Blockly.JavaScript['location'] = function(block) {
   + '\n\t\t{\n\t\t\t"x":' + number_location_x
   + ',\n\t\t\t"y":' + number_location_y
   + '\n\t\t},' + '\n\t"timeFlag":"' + dropdown_timeflag 
-  + '",\n\t"time":' + number_time + '\n\t}';
-  var codej = {"mode":"location","name":text_name,"location":{"x":number_location_x,"y":number_location_y}
-                ,"timeFlag":dropdown_timeflag,"time":number_time}
+  + '",\n\t"time":' + number_time + '\n\t}' + "#...#";
   return code;
 };
