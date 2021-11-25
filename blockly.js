@@ -1,3 +1,4 @@
+// 正式なJSONのフォーマットにする関数
 function convertJSON(list){
   console.log(list)
   var json_list = []
