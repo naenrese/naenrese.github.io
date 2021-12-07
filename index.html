@@ -29,6 +29,10 @@
         
         <link rel="stylesheet" href="design.css">
         
+        <input type="file" id="files" name="files[]" />
+        <output id="list"></output>
+        <button type="button" id="button_create">create </button>
+
         <div class="wrap">
             <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
             <div class="code_style" id="code"></div>
@@ -66,6 +70,13 @@
     button_json.onclick = save_json;
     let button_xml = document.getElementById('button_xml');
     button_xml.onclick = save_xml;
+
+    // import file
+
+    function import_xml() {
+    }
+    let button_create = document.getElementById('button_create');
+    button_create.onclick = import_xml;
 
       </script>
 
