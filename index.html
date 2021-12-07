@@ -29,22 +29,25 @@
         
         <link rel="stylesheet" href="design.css">
         
-        <input type="file" id="files" name="files[]" />
+        <input type="file" accept=".xml" id="file" name="files[]" />
         <output id="list"></output>
         <button type="button" id="button_create">create </button>
 
         <div class="wrap">
-            <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
+            <div id="blocklyDiv" style="height: 480px; width: 800px;"></div>
             <div class="code_style" id="code"></div>
         </div>
         <button type="button" id="button_json">json download</button>
         <button type="button" id="button_xml">xml download</button>
+        <!-- <textarea id="story" name="story"
+        rows="5" cols="33">
+        </textarea> -->
         <script>
 
     var workspace = Blockly.inject('blocklyDiv',options)
     function myUpdateFunction(event) {
         let code = Blockly.JavaScript.workspaceToCode(workspace);
-        document.getElementById('code').innerHTML = '<pre><font size="4" face="Consolas">' + code + '</font></pre>';
+        document.getElementById('code').innerHTML = '<pre><font size="3" face="Consolas">' + code + '</font></pre>';
     }
     workspace.addChangeListener(myUpdateFunction);
 
@@ -72,8 +75,24 @@
     button_xml.onclick = save_xml;
 
     // import file
+    // ファイルがアップロードされたらデータを取得
+    var fileInput = document.getElementById('file');
+    var files = null;
+    let reader = new FileReader();
+    function handleFileSelect(){
+        files = fileInput.files;
+        for(file of files){
+            reader.readAsText(file, 'UTF-8');
+        }
+    }
+    fileInput.addEventListener('change', handleFileSelect);
 
     function import_xml() {
+        if(files != null){
+            var xml = Blockly.Xml.textToDom(reader.result);
+            Blockly.Xml.clearWorkspaceAndLoadFromXml(xml,workspace);
+            console.log(files);
+        }
     }
     let button_create = document.getElementById('button_create');
     button_create.onclick = import_xml;
