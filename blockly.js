@@ -51,6 +51,48 @@ Blockly.JavaScript['define'] = function(block) {
                 + '\n\t\t}\n\t}' + "#...#";
   return code;
 };
+Blockly.JavaScript['robot_define'] = function(block) {
+  var text_name = block.getFieldValue('name');
+  var number_location_x = block.getFieldValue('location_x');
+  var number_location_y = block.getFieldValue('location_y');
+  var number_location_angle = block.getFieldValue('location_angle');
+  // TODO: Assemble JavaScript into code variable.
+  var code = '\n\t{\n\t"name":"' + text_name + '",\n\t"type":"' + "robot" 
+                + '",\n\t"location":' 
+                + '\n\t\t{\n\t\t\t"x":' + number_location_x
+                + ',\n\t\t\t"y":' + number_location_y
+                + ',\n\t\t\t"angle":' + number_location_angle
+                + '\n\t\t}\n\t}' + "#...#";
+  return code;
+};
+Blockly.JavaScript['person_define'] = function(block) {
+  var text_name = block.getFieldValue('name');
+  var number_location_x = block.getFieldValue('location_x');
+  var number_location_y = block.getFieldValue('location_y');
+  var number_location_angle = block.getFieldValue('location_angle');
+  // TODO: Assemble JavaScript into code variable.
+  var code = '\n\t{\n\t"name":"' + text_name + '",\n\t"type":"' + "person" 
+                + '",\n\t"location":' 
+                + '\n\t\t{\n\t\t\t"x":' + number_location_x
+                + ',\n\t\t\t"y":' + number_location_y
+                + ',\n\t\t\t"angle":' + number_location_angle
+                + '\n\t\t}\n\t}' + "#...#";
+  return code;
+};
+Blockly.JavaScript['object_define'] = function(block) {
+  var text_name = block.getFieldValue('name');
+  var number_location_x = block.getFieldValue('location_x');
+  var number_location_y = block.getFieldValue('location_y');
+  var number_location_angle = block.getFieldValue('location_angle');
+  // TODO: Assemble JavaScript into code variable.
+  var code = '\n\t{\n\t"name":"' + text_name + '",\n\t"type":"' + "object" 
+                + '",\n\t"location":' 
+                + '\n\t\t{\n\t\t\t"x":' + number_location_x
+                + ',\n\t\t\t"y":' + number_location_y
+                + ',\n\t\t\t"angle":' + number_location_angle
+                + '\n\t\t}\n\t}' + "#...#";
+  return code;
+};
 Blockly.JavaScript['word'] = function(block) {
   var text_name = block.getFieldValue('name');
   var text_word = block.getFieldValue('word');

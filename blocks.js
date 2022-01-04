@@ -42,6 +42,63 @@ Blockly.Blocks['define'] = {
  this.setHelpUrl("");
   }
 };
+Blockly.Blocks['robot_define'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("robot name")
+        .appendField(new Blockly.FieldTextInput("default"), "name")
+        .appendField("location")
+        .appendField("x")
+        .appendField(new Blockly.FieldNumber(0), "location_x")
+        .appendField("y")
+        .appendField(new Blockly.FieldNumber(0), "location_y")
+        .appendField("angle")
+        .appendField(new Blockly.FieldNumber(0), "location_angle");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(290);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Blocks['person_define'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("person name")
+        .appendField(new Blockly.FieldTextInput("default"), "name")
+        .appendField("location")
+        .appendField("x")
+        .appendField(new Blockly.FieldNumber(0), "location_x")
+        .appendField("y")
+        .appendField(new Blockly.FieldNumber(0), "location_y")
+        .appendField("angle")
+        .appendField(new Blockly.FieldNumber(0), "location_angle");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(290);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Blocks['object_define'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("object name")
+        .appendField(new Blockly.FieldTextInput("default"), "name")
+        .appendField("location")
+        .appendField("x")
+        .appendField(new Blockly.FieldNumber(0), "location_x")
+        .appendField("y")
+        .appendField(new Blockly.FieldNumber(0), "location_y")
+        .appendField("angle")
+        .appendField(new Blockly.FieldNumber(0), "location_angle");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(290);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
 Blockly.Blocks['word'] = {
   init: function() {
     this.appendDummyInput()
