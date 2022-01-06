@@ -1,7 +1,6 @@
 var toolbox = '<xml id="toolbox" style="display: none">';
 
 toolbox += '<category name="Define" colour="#0000FF">'
-toolbox += '<block type="test_block"></block>';
 toolbox += '<block type="script_create"></block>';
 toolbox += '<block type="robot_define"></block>';
 toolbox += '<block type="person_define"></block>';

@@ -56,8 +56,10 @@ Blockly.JavaScript['robot_define'] = function(block) {
   var number_location_x = block.getFieldValue('location_x');
   var number_location_y = block.getFieldValue('location_y');
   var number_location_angle = block.getFieldValue('location_angle');
+  var text_ip = block.getFieldValue('ip');
   // TODO: Assemble JavaScript into code variable.
   var code = '\n\t{\n\t"name":"' + text_name + '",\n\t"type":"' + "robot" 
+                + '",\n\t"ip":"' + text_ip
                 + '",\n\t"location":' 
                 + '\n\t\t{\n\t\t\t"x":' + number_location_x
                 + ',\n\t\t\t"y":' + number_location_y
@@ -98,15 +100,23 @@ Blockly.JavaScript['word'] = function(block) {
   var text_word = block.getFieldValue('word');
   var dropdown_timeflag = block.getFieldValue('timeFlag');
   var number_time = block.getFieldValue('time');
+  var number_volume = block.getFieldValue('volume');
+  var number_pitch = block.getFieldValue('pitch');
   // TODO: Assemble JavaScript into code variable.
-  var code = '\n\t{\n\t"mode":"word",\n\t"name":"' + text_name + '",\n\t"word":"' + text_word + '",'
-              + '\n\t"timeFlag":"' + dropdown_timeflag + '",\n\t"time":' + number_time + '\n\t}' + "#...#";
+  var code = '\n\t{\n\t"mode":"word",\n\t"name":"' + text_name 
+                + '",\n\t"word":"' + text_word + '",'
+                + '\n\t"timeFlag":"' + dropdown_timeflag 
+                + '",\n\t"time":' + number_time 
+                + ',\n\t"volume":' + number_volume
+                + ',\n\t"pitch":' + number_pitch
+                + '\n\t}' + "#...#";
   return code;
 };
 Blockly.JavaScript['location'] = function(block) {
   var text_name = block.getFieldValue('name');
   var number_location_x = block.getFieldValue('location_x');
   var number_location_y = block.getFieldValue('location_y');
+  var number_location_angle = block.getFieldValue('location_angle');
   var dropdown_timeflag = block.getFieldValue('timeFlag');
   var number_time = block.getFieldValue('time');
   // TODO: Assemble JavaScript into code variable.
@@ -114,7 +124,9 @@ Blockly.JavaScript['location'] = function(block) {
   + '",\n\t"location":' 
   + '\n\t\t{\n\t\t\t"x":' + number_location_x
   + ',\n\t\t\t"y":' + number_location_y
+  + ',\n\t\t\t"angle":' + number_location_angle
   + '\n\t\t},' + '\n\t"timeFlag":"' + dropdown_timeflag 
-  + '",\n\t"time":' + number_time + '\n\t}' + "#...#";
+  + '",\n\t"time":' + number_time 
+  + '\n\t}' + "#...#";
   return code;
 };

@@ -53,7 +53,9 @@ Blockly.Blocks['robot_define'] = {
         .appendField("y")
         .appendField(new Blockly.FieldNumber(0), "location_y")
         .appendField("angle")
-        .appendField(new Blockly.FieldNumber(0), "location_angle");
+        .appendField(new Blockly.FieldNumber(0), "location_angle")
+        .appendField("ip adress")
+        .appendField(new Blockly.FieldTextInput(""), "ip");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(290);
@@ -109,8 +111,12 @@ Blockly.Blocks['word'] = {
     this.appendDummyInput()
         .appendField("timing")
         .appendField(new Blockly.FieldDropdown([["nexttime","nexttime"], ["sametime","sametime"]]), "timeFlag")
-        .appendField("time [ms]")
-        .appendField(new Blockly.FieldNumber(0), "time");
+        .appendField("delay time [s]")
+        .appendField(new Blockly.FieldNumber(0), "time")
+        .appendField("volume")
+        .appendField(new Blockly.FieldNumber(1), "volume")
+        .appendField("pitch")
+        .appendField(new Blockly.FieldNumber(1), "pitch");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(160);
@@ -124,14 +130,16 @@ Blockly.Blocks['location'] = {
         .appendField("name")
         .appendField(new Blockly.FieldTextInput("default"), "name")
         .appendField("location")
-        .appendField("x")
+        .appendField("x [m]")
         .appendField(new Blockly.FieldNumber(0), "location_x")
-        .appendField("y")
-        .appendField(new Blockly.FieldNumber(0), "location_y");
+        .appendField("y [m]")
+        .appendField(new Blockly.FieldNumber(0), "location_y")
+        .appendField("angle")
+        .appendField(new Blockly.FieldNumber(0), "location_angle");
     this.appendDummyInput()
         .appendField("timing")
         .appendField(new Blockly.FieldDropdown([["nexttime","nexttime"], ["sametime","sametime"]]), "timeFlag")
-        .appendField("time[ms]")
+        .appendField("delay time[s]")
         .appendField(new Blockly.FieldNumber(0), "time");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
