@@ -7,6 +7,8 @@ toolbox += '<block type="person_define"></block>';
 toolbox += '<block type="object_define"></block>';
 toolbox += '<block type="word"></block>';
 toolbox += '<block type="location"></block>';
+toolbox += '<block type="animation"></block>';
+toolbox += '<block type="touch_robot"></block>';
 toolbox += '  </category>';
 
 toolbox += '<category name="Common movement" colour="#000080">'

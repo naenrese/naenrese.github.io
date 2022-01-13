@@ -130,3 +130,34 @@ Blockly.JavaScript['location'] = function(block) {
   + '\n\t}' + "#...#";
   return code;
 };
+Blockly.JavaScript['animation'] = function(block) {
+  var text_name = block.getFieldValue('name');
+  var dropdown_animationFlag = block.getFieldValue('animationFlag');
+  var dropdown_timeflag = block.getFieldValue('timeFlag');
+  var number_time = block.getFieldValue('time');
+  // TODO: Assemble JavaScript into code variable.
+  var code = '\n\t{\n\t"mode":"animation",\n\t"name":"' + text_name 
+                + '",\n\t"animation":"' + dropdown_animationFlag + '",'
+                + '\n\t"timeFlag":"' + dropdown_timeflag + '"' 
+                + ',\n\t"time":' + number_time 
+                + '\n\t}' + "#...#";
+  return code;
+};
+Blockly.JavaScript['touch_robot'] = function(block) {
+  var text_name = block.getFieldValue('name');
+  var dropdown_sensor = block.getFieldValue('sensor');
+  // var dropdown_timeflag = block.getFieldValue('timeFlag');
+  // var number_time = block.getFieldValue('time');
+  // TODO: Assemble JavaScript into code variable.
+  var code = '\n\t{\n\t"mode":"toutch_robot",\n\t"name":"' + text_name 
+                + '",\n\t"sensor":"' + dropdown_sensor + '",'
+                + '\n\t"timeFlag":"' 
+                // + dropdown_timeflag
+                + 'nexttime' 
+                + '"' 
+                + ',\n\t"time":' 
+                // + number_time
+                + '0' 
+                + '\n\t}' + "#...#";
+  return code;
+};

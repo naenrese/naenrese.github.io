@@ -148,3 +148,41 @@ Blockly.Blocks['location'] = {
  this.setHelpUrl("");
   }
 };
+Blockly.Blocks['animation'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("name")
+        .appendField(new Blockly.FieldTextInput("default"), "name")
+        .appendField("animation")
+        .appendField(new Blockly.FieldDropdown([["happy","happy"], ["bored","bored"]]), "animationFlag")
+    this.appendDummyInput()
+        .appendField("timing")
+        .appendField(new Blockly.FieldDropdown([["nexttime","nexttime"], ["sametime","sametime"]]), "timeFlag")
+        .appendField("delay time [s]")
+        .appendField(new Blockly.FieldNumber(0), "time")
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(160);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.Blocks['touch_robot'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("robot's name")
+        .appendField(new Blockly.FieldTextInput("default"), "name")
+        .appendField("sensor")
+        .appendField(new Blockly.FieldDropdown([["head","head"],["right hand","right_hand"], ["left hand","left_hand"]]), "sensor")
+    // this.appendDummyInput()
+    //     .appendField("timing")
+    //     .appendField(new Blockly.FieldDropdown([["nexttime","nexttime"], ["sametime","sametime"]]), "timeFlag")
+    //     .appendField("delay time [s]")
+    //     .appendField(new Blockly.FieldNumber(0), "time")
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(160);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
