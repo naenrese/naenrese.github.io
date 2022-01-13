@@ -149,7 +149,7 @@ Blockly.JavaScript['touch_robot'] = function(block) {
   // var dropdown_timeflag = block.getFieldValue('timeFlag');
   // var number_time = block.getFieldValue('time');
   // TODO: Assemble JavaScript into code variable.
-  var code = '\n\t{\n\t"mode":"toutch_robot",\n\t"name":"' + text_name 
+  var code = '\n\t{\n\t"mode":"touch_robot",\n\t"name":"' + text_name 
                 + '",\n\t"sensor":"' + dropdown_sensor + '",'
                 + '\n\t"timeFlag":"' 
                 // + dropdown_timeflag
