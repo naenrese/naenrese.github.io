@@ -154,7 +154,20 @@ Blockly.Blocks['animation'] = {
         .appendField("name")
         .appendField(new Blockly.FieldTextInput("default"), "name")
         .appendField("animation")
-        .appendField(new Blockly.FieldDropdown([["happy","happy"], ["bored","bored"]]), "animationFlag")
+        .appendField(new Blockly.FieldDropdown(
+          [
+            ["happy","happy"],
+            ["bored","bored"],
+            ["IDontKnow","IDontKnow"],
+            ["Hey","Hey"],
+            ["sad","sad"],
+            ["No_1","No_1"],
+            ["No_2","No_2"],
+            ["But_1","But_1"],
+            ["CalmDown_1","CalmDown_1"],
+            ["Thinking_1","Thinking_1"]
+          ]
+          ), "animationFlag")
     this.appendDummyInput()
         .appendField("timing")
         .appendField(new Blockly.FieldDropdown([["nexttime","nexttime"], ["sametime","sametime"]]), "timeFlag")
@@ -181,7 +194,7 @@ Blockly.Blocks['touch_robot'] = {
     //     .appendField(new Blockly.FieldNumber(0), "time")
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(160);
+    this.setColour(210);
  this.setTooltip("");
  this.setHelpUrl("");
   }
