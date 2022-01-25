@@ -158,14 +158,21 @@ Blockly.Blocks['animation'] = {
           [
             ["happy","happy"],
             ["bored","bored"],
-            ["IDontKnow","IDontKnow"],
-            ["Hey","Hey"],
-            ["sad","sad"],
-            ["No_1","No_1"],
-            ["No_2","No_2"],
-            ["But_1","But_1"],
-            ["CalmDown_1","CalmDown_1"],
-            ["Thinking_1","Thinking_1"]
+            ["confused","confused"],
+            ["curious","curious"],
+            ["elephant","elephant"],
+            ["kisses","kisses"],
+            ["thinking","thinking"],
+            ["wave","wave"]
+            
+            // ["IDontKnow","IDontKnow"],
+            // ["Hey","Hey"],
+            // ["sad","sad"],
+            // ["No_1","No_1"],
+            // ["No_2","No_2"],
+            // ["But_1","But_1"],
+            // ["CalmDown_1","CalmDown_1"],
+            // ["Thinking_1","Thinking_1"]
           ]
           ), "animationFlag")
     this.appendDummyInput()
