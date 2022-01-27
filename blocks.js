@@ -46,7 +46,7 @@ Blockly.Blocks['robot_define'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("robot name")
-        .appendField(new Blockly.FieldTextInput("default"), "name")
+        .appendField(new Blockly.FieldTextInput("Pepper"), "name")
         .appendField("location")
         .appendField("x")
         .appendField(new Blockly.FieldNumber(0), "location_x")
@@ -105,7 +105,7 @@ Blockly.Blocks['word'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("name")
-        .appendField(new Blockly.FieldTextInput("default"), "name")
+        .appendField(new Blockly.FieldTextInput("Pepper"), "name")
         .appendField("word")
         .appendField(new Blockly.FieldTextInput("default"), "word");
     this.appendDummyInput()
@@ -128,7 +128,7 @@ Blockly.Blocks['location'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("name")
-        .appendField(new Blockly.FieldTextInput("default"), "name")
+        .appendField(new Blockly.FieldTextInput("Pepper"), "name")
         .appendField("location")
         .appendField("x [m]")
         .appendField(new Blockly.FieldNumber(0), "location_x")
@@ -152,7 +152,7 @@ Blockly.Blocks['animation'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("name")
-        .appendField(new Blockly.FieldTextInput("default"), "name")
+        .appendField(new Blockly.FieldTextInput("Pepper"), "name")
         .appendField("animation")
         .appendField(new Blockly.FieldDropdown(
           [
@@ -191,7 +191,7 @@ Blockly.Blocks['touch_robot'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("robot's name")
-        .appendField(new Blockly.FieldTextInput("default"), "name")
+        .appendField(new Blockly.FieldTextInput("Pepper"), "name")
         .appendField("sensor")
         .appendField(new Blockly.FieldDropdown([["head","head"],["right hand","right_hand"], ["left hand","left_hand"]]), "sensor")
     // this.appendDummyInput()
