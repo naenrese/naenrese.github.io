@@ -55,7 +55,7 @@ Blockly.Blocks['robot_define'] = {
         .appendField("angle")
         .appendField(new Blockly.FieldNumber(0), "location_angle")
         .appendField("ip adress")
-        .appendField(new Blockly.FieldTextInput(""), "ip");
+        .appendField(new Blockly.FieldTextInput("192.168.11.30"), "ip");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(290);
