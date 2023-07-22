@@ -1,4 +1,8 @@
 @charset "utf-8";
+html, body {
+  height: 100%;
+  width: 100%;
+}
 p { 
   color: rgb(255, 0, 221); 
 }    
@@ -8,8 +12,41 @@ p {
 .code_style{
     background:lightblue;
     display:flex;
-    width:400px;
+    width:20%;
     height:480px;
     overflow: scroll;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   }
+
+interface_code {
+    margin: 0;
+    padding: 0;
+    height: 80vh;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 2分割されたコンテナのスタイル */
+.container {
+    display: flex;
+    width: 100%;
+    height:100%;
+    border: 1px solid #ccc;
+}
+
+/* 左側のペインのスタイル */
+.left-pane {
+    flex: 1;
+    padding: 20px;
+    overflow: scroll;
+    background-color: #f1f1f1;
+}
+
+/* 右側のペインのスタイル */
+.right-pane {
+    flex: 1;
+    padding: 20px;
+    background-color: #e0e0e0;
+}

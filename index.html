@@ -6,7 +6,6 @@
         <title>CreateScriptGUI</title>
     </head>
     <body>
-        <p>hello!</p>
         <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
         <script src="blockly/lib/blockly_compressed.js"></script>
         <script src="blockly/lib/blocks_compressed.js"></script>
@@ -28,28 +27,57 @@
         <script src="developer/workspace.js"></script>
         
         <link rel="stylesheet" href="design.css">
-        
+        <p>hello!</p>
         <input type="file" accept=".xml" id="file" name="files[]" />
         <output id="list"></output>
         <button type="button" id="button_create">create </button>
-
         <div class="wrap">
-            <div id="blocklyDiv" style="height: 480px; width: 800px;"></div>
-            <div class="code_style" id="code"></div>
+            <interface_code>
+                <div class="container">
+                    <div class="left-pane">
+                        <!-- 左側のコンテンツを配置 -->
+                        <h2>main</h2>
+                        <button type="button" id="button_create">create </button>
+                        <div class="wrap">
+                            <div id="blocklyDiv_main" style="height: 500px; width: 70%;"></div>
+                            <div class="code_style" id="code_main"></div>
+                        </div>
+                    </div>
+                    <div class="right-pane">
+                        <!-- 右側のコンテンツを配置 -->
+                        <h2>script</h2>
+                        <button type="button" id="button_create">create </button>
+                        <div class="wrap">
+                            <div id="blocklyDiv_script" style="height: 500px; width: 70%;"></div>
+                            <div class="code_style" id="code_script"></div>
+                        </div>
+                    </div>
+                </div>
+            </interface_code>
         </div>
         <button type="button" id="button_json">json download</button>
         <button type="button" id="button_xml">xml download</button>
         <!-- <textarea id="story" name="story"
         rows="5" cols="33">
         </textarea> -->
+
         <script>
 
-    var workspace = Blockly.inject('blocklyDiv',options)
-    function myUpdateFunction(event) {
-        let code = Blockly.JavaScript.workspaceToCode(workspace);
-        document.getElementById('code').innerHTML = '<pre><font size="3" face="Consolas">' + code + '</font></pre>';
+    //main interface
+    var workspace_main = Blockly.inject('blocklyDiv_main',options)
+    function myUpdateFunction_main(event) {
+        let code_main = Blockly.JavaScript.workspaceToCode(workspace_main);
+        document.getElementById('code_main').innerHTML = '<pre><font size="3" face="Consolas">' + code_main + '</font></pre>';
     }
-    workspace.addChangeListener(myUpdateFunction);
+    workspace_main.addChangeListener(myUpdateFunction_main);
+
+    //script interface
+    var workspace_script = Blockly.inject('blocklyDiv_script',options)
+    function myUpdateFunction_script(event) {
+        let code_script = Blockly.JavaScript.workspaceToCode(workspace_script);
+        document.getElementById('code_script').innerHTML = '<pre><font size="3" face="Consolas">' + code_script + '</font></pre>';
+    }
+    workspace_script.addChangeListener(myUpdateFunction_script);
 
     // download file
     function download(content, fileName, contentType) {
@@ -99,18 +127,5 @@
 
       </script>
 
-
-      <!-- Vueを使ってみる -->
-      <!-- <div id= "app">
-          {{ message }}
-      </div>
-      <script>
-          var app = new Vue({
-              el: '#app',
-              data: {
-                  message: 'hello Vue!'
-              }
-          })
-      </script> -->
 </body>
 </html>

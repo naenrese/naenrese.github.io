@@ -130,6 +130,7 @@ Blockly.JavaScript['location'] = function(block) {
   + '\n\t}' + "#...#";
   return code;
 };
+
 Blockly.JavaScript['animation'] = function(block) {
   var text_name = block.getFieldValue('name');
   var dropdown_animationFlag = block.getFieldValue('animationFlag');
