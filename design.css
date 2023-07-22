@@ -24,7 +24,7 @@ p {
     height: 80vh;
     display: flex;
     width: 100%;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -38,15 +38,17 @@ p {
 
 /* 左側のペインのスタイル */
 .left-pane {
-    flex: 1;
+    flex: 1 1 auto;
     padding: 20px;
     overflow: scroll;
     background-color: #f1f1f1;
+    resize: horizontal;
 }
 
 /* 右側のペインのスタイル */
 .right-pane {
-    flex: 1;
+    flex: 1 1 auto;
     padding: 20px;
+    overflow: scroll;
     background-color: #e0e0e0;
 }
