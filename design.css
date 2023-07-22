@@ -12,8 +12,8 @@ p {
 .code_style{
     background:lightblue;
     display:flex;
-    width:20%;
-    height:480px;
+    width:30%;
+    height:500px;
     overflow: scroll;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   }
