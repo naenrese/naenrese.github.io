@@ -36,7 +36,7 @@ p {
     border: 1px solid #ccc;
 }
 
-/* 左側のペインのスタイル */
+/* 左側*/
 .left-pane {
     flex: 1 1 auto;
     padding: 20px;
@@ -45,7 +45,7 @@ p {
     resize: horizontal;
 }
 
-/* 右側のペインのスタイル */
+/* 右側 */
 .right-pane {
     flex: 1 1 auto;
     padding: 20px;

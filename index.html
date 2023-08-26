@@ -61,24 +61,14 @@
         rows="5" cols="33">
         </textarea> -->
 
-        <script>
 
-    //main interface
-    var workspace_main = Blockly.inject('blocklyDiv_main',options)
-    function myUpdateFunction_main(event) {
-        let code_main = Blockly.JavaScript.workspaceToCode(workspace_main);
-        document.getElementById('code_main').innerHTML = '<pre><font size="3" face="Consolas">' + code_main + '</font></pre>';
-    }
-    workspace_main.addChangeListener(myUpdateFunction_main);
+    <!-- main interface -->
+    <script src="js/mainUI.js"></script>
 
-    //script interface
-    var workspace_script = Blockly.inject('blocklyDiv_script',options)
-    function myUpdateFunction_script(event) {
-        let code_script = Blockly.JavaScript.workspaceToCode(workspace_script);
-        document.getElementById('code_script').innerHTML = '<pre><font size="3" face="Consolas">' + code_script + '</font></pre>';
-    }
-    workspace_script.addChangeListener(myUpdateFunction_script);
+    <!-- script interface -->
+    <script src="js/scriptUI.js"></script>
 
+    <script>
     // download file
     function download(content, fileName, contentType) {
         var a = document.createElement("a");
