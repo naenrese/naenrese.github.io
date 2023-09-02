@@ -1,13 +1,7 @@
 var scriptUI_toolbox = '<xml id="toolbox" style="display: none">';
 
 scriptUI_toolbox += '<category name="Basis" colour="#0000FF">'
-scriptUI_toolbox += '<block type="script_create"></block>';
-scriptUI_toolbox += '  </category>';
-
-scriptUI_toolbox += '<category name="Define" colour="#0000FF">'
-scriptUI_toolbox += '<block type="robot_define"></block>';
-scriptUI_toolbox += '<block type="person_define"></block>';
-scriptUI_toolbox += '<block type="object_define"></block>';
+scriptUI_toolbox += '<block type="newBlock_create"></block>';
 scriptUI_toolbox += '  </category>';
 
 scriptUI_toolbox += '<category name="Movement" colour="#000080">'

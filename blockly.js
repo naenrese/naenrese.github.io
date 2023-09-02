@@ -162,3 +162,18 @@ Blockly.JavaScript['touch_robot'] = function(block) {
                 + '\n\t}' + "#...#";
   return code;
 };
+
+Blockly.JavaScript['newBlock_create'] = function(block) {
+  var text_name = block.getFieldValue('block_name');
+  var statements_name = Blockly.JavaScript.statementToCode(block, 'script');
+  
+
+   // 正式なJSONのフォーマットにする部分(script)
+  var list_script =  statements_name.split("#...#");
+  var text_statements_script = convertJSON(list_script) 
+
+  // TODO: Assemble JavaScript into code variable.
+  var code = '{\n\t"name": "' + text_name  
+                + '\n\t,\n\t"scripts":' + text_statements_script + '\n}';
+  return code;
+};
