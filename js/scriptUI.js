@@ -54,3 +54,10 @@ function myUpdateFunction_script(event) {
     document.getElementById('code_script').innerHTML = '<pre><font size="3" face="Consolas">' + code_script + '</font></pre>';
 }
 scriptUI_workspace.addChangeListener(myUpdateFunction_script);
+
+function saveScriptBlock(){
+    let blockName_element = document.getElementById('input_block_name');
+    var blockName = blockName_element.value;
+    var scriptUI_code = Blockly.JavaScript.workspaceToCode(scriptUI_workspace);
+    var scriptUI_xml = Blockly.Xml.workspaceToDom(scriptUI_workspace);
+}

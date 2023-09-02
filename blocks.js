@@ -209,9 +209,9 @@ Blockly.Blocks['touch_robot'] = {
 
 Blockly.Blocks['newBlock_create'] = {
   init: function() {
-    this.appendDummyInput()
-        .appendField("block name")
-        .appendField(new Blockly.FieldTextInput('default name'),"block_name");
+    // this.appendDummyInput()
+    //     .appendField("block name")
+    //     .appendField(new Blockly.FieldTextInput('default name'),"block_name");
     this.appendStatementInput("script")
         .appendField("script");
     this.setInputsInline(true);

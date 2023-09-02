@@ -164,7 +164,9 @@ Blockly.JavaScript['touch_robot'] = function(block) {
 };
 
 Blockly.JavaScript['newBlock_create'] = function(block) {
-  var text_name = block.getFieldValue('block_name');
+  // var text_name = block.getFieldValue('block_name');
+  let blockName_element = document.getElementById('input_block_name');
+  var blockName = blockName_element.value;
   var statements_name = Blockly.JavaScript.statementToCode(block, 'script');
   
 
@@ -173,7 +175,10 @@ Blockly.JavaScript['newBlock_create'] = function(block) {
   var text_statements_script = convertJSON(list_script) 
 
   // TODO: Assemble JavaScript into code variable.
-  var code = '{\n\t"name": "' + text_name  
-                + '\n\t,\n\t"scripts":' + text_statements_script + '\n}';
+  var code = '{' 
+                + '\n\t"name": "' + blockName 
+                + '",'
+                + '\n\t"scripts":' + text_statements_script 
+                + '\n}';
   return code;
 };
