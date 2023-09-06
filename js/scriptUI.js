@@ -84,7 +84,7 @@ function scriptUI_saveScriptBlock(){
     //格納
     scriptUI_blocks[blockName] = {xml:scriptUI_xml,code:scriptUI_code,name:blockName};
     //mainUIに追加
-    mainUI_addScriptBlocks()
+    mainUI_addScriptBlocks(blockName)
 }
 
 function scriptUI_showScriptBlock(){

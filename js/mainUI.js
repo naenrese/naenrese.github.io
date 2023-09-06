@@ -20,6 +20,8 @@ mainUI_toolbox += '<category name="Robot Interaction" colour="#800080">'
 mainUI_toolbox += '<block type="touch_robot"></block>';
 mainUI_toolbox += '  </category>';
 
+mainUI_toolbox += '<category name="Original Block" colour="#ffc71f">'
+mainUI_toolbox += '  </category>';
 
 mainUI_toolbox += '<sep></sep>';
 mainUI_toolbox += '</xml>';
@@ -62,12 +64,11 @@ function myUpdateFunction_main(event) {
 }
 mainUI_workspace.addChangeListener(myUpdateFunction_main);
 
-function mainUI_addScriptBlocks(){
-    for(let key in scriptUI_blocks){
-        Blockly.Blocks[key] = {
+function mainUI_addScriptBlocks(blockName){
+        Blockly.Blocks[blockName] = {
             init: function() {
-                this.appendStatementInput(key)
-                    .appendField(key);
+                this.appendStatementInput(blockName)
+                    .appendField(blockName);
                 this.setColour(50);
                 this.setPreviousStatement(true, null);
                 this.setNextStatement(true, null);
@@ -75,10 +76,26 @@ function mainUI_addScriptBlocks(){
                 this.setHelpUrl("");
             }
         }
-        Blockly.JavaScript[key] = function(block) {
-            var code = '\n\t{\n\t"mode":"originalBlock",\n\t"name":"' + key 
+        Blockly.JavaScript[blockName] = function(block) {
+            var code = '\n\t{\n\t"mode":"originalBlock",\n\t"name":"' + blockName 
                           + '\n\t}' + "#...#";
             return code;
-          };
-    }
+        };
+        var parser = new DOMParser();
+        var xml_toolbox = parser.parseFromString(mainUI_toolbox,'text/xml');
+        var categoryElements 
+        = xml_toolbox.querySelectorAll('category[name="Original Block"][colour="#ffc71f"]');
+        var newBlockElement = xml_toolbox.createElement("block");
+        newBlockElement.setAttribute("type", blockName);
+        categoryElements.forEach(function(categoryElement) {
+            categoryElement.appendChild(newBlockElement);
+        });
+        mainUI_toolbox = new XMLSerializer().serializeToString(xml_toolbox);
+        mainUI_options["toolbox"] = mainUI_toolbox;
+        // console.log(mainUI_options["toolbox"]);
+        mainUI_ToolcoxClass = new Blockly.Toolbox(mainUI_workspace);
+        mainUI_ToolcoxClass.setVisible(false);
+
+        // [求む] toolboxの途中で変更する方法
+        // mainUI_workspace = Blockly.inject('blocklyDiv_main',mainUI_options)
 }
