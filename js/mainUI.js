@@ -61,3 +61,24 @@ function myUpdateFunction_main(event) {
     document.getElementById('code_main').innerHTML = '<pre><font size="3" face="Consolas">' + code_main + '</font></pre>';
 }
 mainUI_workspace.addChangeListener(myUpdateFunction_main);
+
+function mainUI_addScriptBlocks(){
+    for(let key in scriptUI_blocks){
+        Blockly.Blocks[key] = {
+            init: function() {
+                this.appendStatementInput(key)
+                    .appendField(key);
+                this.setColour(50);
+                this.setPreviousStatement(true, null);
+                this.setNextStatement(true, null);
+                this.setTooltip("");
+                this.setHelpUrl("");
+            }
+        }
+        Blockly.JavaScript[key] = function(block) {
+            var code = '\n\t{\n\t"mode":"originalBlock",\n\t"name":"' + key 
+                          + '\n\t}' + "#...#";
+            return code;
+          };
+    }
+}

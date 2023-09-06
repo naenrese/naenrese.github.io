@@ -49,15 +49,55 @@ var scriptUI_options = {
 };
 
 var scriptUI_workspace = Blockly.inject('blocklyDiv_script',scriptUI_options)
-function myUpdateFunction_script(event) {
+function scriptUI_myUpdateFunction(event) {
     let code_script = Blockly.JavaScript.workspaceToCode(scriptUI_workspace);
     document.getElementById('code_script').innerHTML = '<pre><font size="3" face="Consolas">' + code_script + '</font></pre>';
 }
-scriptUI_workspace.addChangeListener(myUpdateFunction_script);
+scriptUI_workspace.addChangeListener(scriptUI_myUpdateFunction);
 
-function saveScriptBlock(){
+var scriptUI_blocks = {};
+function scriptUI_saveScriptBlock(){
     let blockName_element = document.getElementById('input_block_name');
     var blockName = blockName_element.value;
     var scriptUI_code = Blockly.JavaScript.workspaceToCode(scriptUI_workspace);
     var scriptUI_xml = Blockly.Xml.workspaceToDom(scriptUI_workspace);
+
+    var script_select = document.getElementById("script_select");
+    
+    var optionAddFlag = true;
+
+    //名前が被ってない時だけ選択フォームに追加
+    for (let i = 0; i < script_select.options.length; i++) {
+        const selectElement = script_select.options[i];
+        if (blockName == selectElement.value) {
+            optionAddFlag = false;
+            break;
+        }
+    }
+    if (optionAddFlag) {
+        var option = document.createElement("option");
+        option.text = blockName;
+        option.value = blockName;
+        script_select.appendChild(option);
+    }
+
+    //格納
+    scriptUI_blocks[blockName] = {xml:scriptUI_xml,code:scriptUI_code,name:blockName};
+    //mainUIに追加
+    mainUI_addScriptBlocks()
 }
+
+function scriptUI_showScriptBlock(){
+    let blockName_element = document.getElementById('input_block_name');
+    var script_select = document.getElementById("script_select");
+    var blockXmlForShow = scriptUI_blocks[script_select.value].xml;
+
+    blockName_element.value = scriptUI_blocks[script_select.value].name;
+    Blockly.Xml.clearWorkspaceAndLoadFromXml(blockXmlForShow,scriptUI_workspace);
+}
+
+let scriptUI_button_scriptSave = document.getElementById('button_scriptSave');
+scriptUI_button_scriptSave.onclick = scriptUI_saveScriptBlock;
+
+let scriptUI_selectBlock = document.getElementById('script_select');
+scriptUI_selectBlock.onchange = scriptUI_showScriptBlock;
