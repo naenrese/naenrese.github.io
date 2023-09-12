@@ -21,6 +21,7 @@ mainUI_toolbox += '<block type="touch_robot"></block>';
 mainUI_toolbox += '  </category>';
 
 mainUI_toolbox += '<category name="Original Block" colour="#ffc71f">'
+mainUI_toolbox += '<block type="custom_dropdown"></block>'
 mainUI_toolbox += '  </category>';
 
 mainUI_toolbox += '<sep></sep>';
@@ -81,6 +82,8 @@ function mainUI_addScriptBlocks(blockName){
                           + '\n\t}' + "#...#";
             return code;
         };
+
+        
         var parser = new DOMParser();
         var xml_toolbox = parser.parseFromString(mainUI_toolbox,'text/xml');
         var categoryElements 

@@ -218,3 +218,25 @@ Blockly.Blocks['newBlock_create'] = {
     this.setColour(100);
   }
 };
+
+
+//ENRIQUE
+var script_selectOptions = [
+  ['Select', 'option1'],
+  // Add more options as needed
+];
+
+
+//ENRIQUE
+Blockly.Blocks['custom_dropdown'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Custom Dropdown:")
+        .appendField(new Blockly.FieldDropdown(script_selectOptions), "dropdown_name");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(210);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
