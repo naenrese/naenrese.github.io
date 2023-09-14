@@ -61,7 +61,7 @@ var mainUI_options = {
 var mainUI_workspace = Blockly.inject('blocklyDiv_main',mainUI_options)
 function myUpdateFunction_main(event) {
     let code_main = Blockly.JavaScript.workspaceToCode(mainUI_workspace);
-    document.getElementById('code_main').innerHTML = '<pre><font size="3" face="Consolas">' + code_main + '</font></pre>';
+    document.getElementById('code_main').innerHTML = '<pre>' + code_main + '</pre>';
 }
 mainUI_workspace.addChangeListener(myUpdateFunction_main);
 

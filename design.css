@@ -12,10 +12,11 @@ p {
 .code_style{
     background:lightblue;
     display:flex;
-    width:300px;
-    height:500px;
+    width:500px;
+    height:300px;
     overflow: scroll;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 10px;
+    font-family:'Consolas','Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   }
 
 .interface_code {

@@ -51,7 +51,7 @@ var scriptUI_options = {
 var scriptUI_workspace = Blockly.inject('blocklyDiv_script',scriptUI_options)
 function scriptUI_myUpdateFunction(event) {
     let code_script = Blockly.JavaScript.workspaceToCode(scriptUI_workspace);
-    document.getElementById('code_script').innerHTML = '<pre><font size="3" face="Consolas">' + code_script + '</font></pre>';
+    document.getElementById('code_script').innerHTML = '<pre>' + code_script + '</pre>';
 }
 scriptUI_workspace.addChangeListener(scriptUI_myUpdateFunction);
 
