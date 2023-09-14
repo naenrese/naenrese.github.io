@@ -186,6 +186,8 @@ Blockly.JavaScript['newBlock_create'] = function(block) {
 //ENRIQUE
 Blockly.JavaScript['custom_dropdown'] = function(block) {
   var dropdown_name = block.getFieldValue('dropdown_name');
-  var code = 'Your code based on the selected option: ' + dropdown_name;
-  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+  var code = '\n\t{\n\t"mode":"originalBlock",\n\t"name":"' + dropdown_name
+  + '"\n\t}' + "#...#";
+  // return [code, Blockly.JavaScript.ORDER_ATOMIC];
+  return code;
 };
