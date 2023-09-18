@@ -28,18 +28,22 @@
         <script src="developer/workspace.js"></script>
         
         <link rel="stylesheet" href="design.css">
-        <p>hello!</p>
-        <input type="file" accept=".xml" id="file" name="files[]" />
-        <output id="list"></output>
-        <button type="button" id="button_create">create </button>
         <div class="wrap">
+            <p>hello!</p>
+            <input type="file" accept=".xml" id="file" name="files[]" />
+            <output id="list"></output>
+            <button type="button" id="button_create">create </button>
+            <button type="button" id="button_json">json download</button>
+            <button type="button" id="button_xml">xml download</button>
+
+
             <div class="interface_code">
                 <div class="container">
                     <div class="left-pane">
                         <!-- 左側のコンテンツを配置 -->
                         <h2>main</h2>
                         <div class="wrap">
-                            <div id="blocklyDiv_main" style="height: 500px; width: 500px;"></div>
+                            <div id="blocklyDiv_main" style="height: 500px; width:100%;"></div>
                         </div>
                         <div class="code_style" id="code_main"></div>
                     </div>
@@ -58,15 +62,14 @@
                         <button type="button" id="button_populate_options">Set options</button>
 
                         <div class="wrap">
-                            <div id="blocklyDiv_script" style="height: 500px; width: 500px;"></div>
+                            <div id="blocklyDiv_script" style="height: 500px; width:100%;"></div>
                         </div>
                         <div class="code_style" id="code_script"></div>
                     </div>
                 </div>
             </div>
         </div>
-        <button type="button" id="button_json">json download</button>
-        <button type="button" id="button_xml">xml download</button>
+
         <!-- <textarea id="story" name="story"
         rows="5" cols="33">
         </textarea> -->
