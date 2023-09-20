@@ -55,7 +55,7 @@ function scriptUI_myUpdateFunction(event) {
 }
 scriptUI_workspace.addChangeListener(scriptUI_myUpdateFunction);
 
-var scriptUI_blocks = {};
+var scriptUI_blocks = {};//コードたちを格納する変数
 function scriptUI_saveScriptBlock(){
     let blockName_element = document.getElementById('input_block_name');
     var blockName = blockName_element.value;

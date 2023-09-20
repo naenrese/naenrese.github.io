@@ -102,3 +102,10 @@ function mainUI_addScriptBlocks(blockName){
         // [求む] toolboxの途中で変更する方法
         // mainUI_workspace = Blockly.inject('blocklyDiv_main',mainUI_options)
 }
+
+function mainUI_outputXMLandJSON(){
+    var mainUI_code = Blockly.JavaScript.workspaceToCode(mainUI_workspace);
+    var mainUI_xml = Blockly.Xml.workspaceToDom(mainUI_workspace);
+
+    return {xml:mainUI_xml,code:mainUI_code};
+}
