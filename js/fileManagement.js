@@ -74,10 +74,6 @@ function download_zip(){
     });
 }
 
-function import_zip(){
-
-
-}
 // import file
 // ファイルがアップロードされたらデータを取得
 var fileInput = document.getElementById('file');
@@ -93,6 +89,14 @@ function handleFileSelect(){
     }
 }
 fileInput.addEventListener('change', handleFileSelect);
+
+function import_zip(){
+    if(files != null){
+        var xml = Blockly.Xml.textToDom(reader.result);
+        Blockly.Xml.clearWorkspaceAndLoadFromXml(xml,workspace);
+        // console.log(files);
+    }
+}
 
 // function import_xml() {
 //     if(files != null){

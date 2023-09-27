@@ -96,6 +96,10 @@ function scriptUI_showScriptBlock(){
     Blockly.Xml.clearWorkspaceAndLoadFromXml(blockXmlForShow,scriptUI_workspace);
 }
 
+function scriptUI_clearWorkingState(){
+    
+}
+
 let scriptUI_button_scriptSave = document.getElementById('button_scriptSave');
 scriptUI_button_scriptSave.onclick = scriptUI_saveScriptBlock;
 
