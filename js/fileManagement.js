@@ -61,13 +61,21 @@ function import_zip(){
                 zip.forEach(function(relativePath, zipEntry) { // ZIPファイル内の各ファイルに対して繰り返し処理を行う
                     if (!zipEntry.dir) { // ファイルの場合のみ処理を実行
                         let fileExtension = zipEntry.name.split('.').pop(); // ファイルの拡張子を取得
-                        if (fileExtension === 'json' || fileExtension === 'xml') { // JSONかXMLのファイルの場合のみ処理を実行
+                        if (fileExtension === 'json') { // JSONのファイルの場合のみ処理を実行
                             zipEntry.async("string").then(function(data) { // ファイルの内容を文字列として取得
                                 let folderPath = relativePath.substring(0, relativePath.lastIndexOf('/')); // フォルダのパスを取得
                                 if (!import_movements[folderPath]) { // フォルダが存在しない場合、新たに作成
                                     import_movements[folderPath] = {};
                                 }
-                                import_movements[folderPath][zipEntry.name] = data; // フォルダ内のファイルを保存
+                                import_movements[folderPath]["json"] = data; // フォルダ内のファイルを保存
+                            });
+                        } else if (fileExtension === 'xml'){// XMLのファイルの場合のみ処理を実行
+                            zipEntry.async("string").then(function(data) { // ファイルの内容を文字列として取得
+                                let folderPath = relativePath.substring(0, relativePath.lastIndexOf('/')); // フォルダのパスを取得
+                                if (!import_movements[folderPath]) { // フォルダが存在しない場合、新たに作成
+                                    import_movements[folderPath] = {};
+                                }
+                                import_movements[folderPath]["xml"] = data; // フォルダ内のファイルを保存
                             });
                         }
                     }
@@ -82,22 +90,18 @@ fileInput.addEventListener('change', import_zip);//zipファイルをアップ�
 
 function loadMovementsToWorkspace(){//保存した変数の中身をワークスペースに反映
     if(files != null){
+        console.log(import_movements);
+        let mainUI_newData = import_movements["main"];
+        let scriptUI_newData = import_movements["script"];
 
-        // var xml = Blockly.Xml.textToDom(reader.result);
-        // Blockly.Xml.clearWorkspaceAndLoadFromXml(xml,workspace);
-        // console.log(files);
+        mainUI_restoreWorkingState(mainUI_newData);
+        scriptUI_restoreWorkingState(scriptUI_newData);
     }
 }
 
-// function import_xml() {
-//     if(files != null){
-//         var xml = Blockly.Xml.textToDom(reader.result);
-//         Blockly.Xml.clearWorkspaceAndLoadFromXml(xml,workspace);
-//         console.log(files);
-//     }
-// }
-// let button_create = document.getElementById('button_create');
-// button_create.onclick = import_xml;
+
+let button_create = document.getElementById('button_create');
+button_create.onclick = loadMovementsToWorkspace;
 
 let button_download_zip = document.getElementById('button_download_zip');
 button_download_zip.onclick = download_zip;

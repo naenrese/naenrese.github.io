@@ -83,7 +83,7 @@ function mainUI_addScriptBlocks(blockName){
             return code;
         };
 
-        
+
         var parser = new DOMParser();
         var xml_toolbox = parser.parseFromString(mainUI_toolbox,'text/xml');
         var categoryElements 
@@ -110,12 +110,9 @@ function mainUI_outputXMLandJSON(){
     return {xml:mainUI_xml,code:mainUI_code};
 }
 
-//現在の作業状況全部消す
-function mainUI_clearWorkingState(){
-    
-}
+//現在の作業状況全部消してzipファイルのmainフォルダから作業状況を復元
+function mainUI_restoreWorkingState(mainUI_newData){
+    let blockXmlForShow = Blockly.Xml.textToDom(mainUI_newData["xml"]);
 
-//zipファイルのscriptフォルダから作業状況を復元
-function mainUI_restoreWorkingState(scriptUI_newData){
-
+    Blockly.Xml.clearWorkspaceAndLoadFromXml(blockXmlForShow,mainUI_workspace);
 }

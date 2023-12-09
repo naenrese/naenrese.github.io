@@ -58,14 +58,12 @@ scriptUI_workspace.addChangeListener(scriptUI_myUpdateFunction);
 var scriptUI_blocks = {};//コードたちを格納する変数
 function scriptUI_saveScriptBlock(){
     let blockName_element = document.getElementById('input_block_name');
-    var blockName = blockName_element.value;
-    var scriptUI_code = Blockly.JavaScript.workspaceToCode(scriptUI_workspace);
-    var scriptUI_xml = Blockly.Xml.workspaceToDom(scriptUI_workspace);
+    let blockName = blockName_element.value;
+    let scriptUI_code = Blockly.JavaScript.workspaceToCode(scriptUI_workspace);
+    let scriptUI_xml = Blockly.Xml.workspaceToDom(scriptUI_workspace);
 
-    var script_select = document.getElementById("script_select");
-    
-    var optionAddFlag = true;
-
+    let script_select = document.getElementById("script_select");
+    let optionAddFlag = true;
     //名前が被ってない時だけ選択フォームに追加
     for (let i = 0; i < script_select.options.length; i++) {
         const selectElement = script_select.options[i];
@@ -89,21 +87,52 @@ function scriptUI_saveScriptBlock(){
 
 function scriptUI_showScriptBlock(){
     let blockName_element = document.getElementById('input_block_name');
-    var script_select = document.getElementById("script_select");
-    var blockXmlForShow = scriptUI_blocks[script_select.value].xml;
+    let script_select = document.getElementById("script_select");
+    let blockXmlForShow = scriptUI_blocks[script_select.value].xml;
 
     blockName_element.value = scriptUI_blocks[script_select.value].name;
     Blockly.Xml.clearWorkspaceAndLoadFromXml(blockXmlForShow,scriptUI_workspace);
 }
 
-//現在の作業状況全部消す
-function scriptUI_clearWorkingState(){
-    
-}
-
-//zipファイルのscriptフォルダから作業状況を復元
+//現在の作業状況全部消してzipファイルのscriptフォルダから作業状況を復元
 function scriptUI_restoreWorkingState(scriptUI_newData){
+    scriptUI_blocks = {};//保持してる中身全部消す
 
+    console.log(scriptUI_newData);
+    console.log("aaaa");
+
+    for (const key in scriptUI_newData) {
+        let scriptUI_xml = Blockly.Xml.textToDom(scriptUI_newData[key].xml);
+        let scriptUI_code = scriptUI_newData[key].json;
+
+        let script_select = document.getElementById("script_select");
+        script_select.innerHTML = '';
+        let option = document.createElement("option");
+        option.text = "new_block";
+        option.value = "new block";
+        script_select.appendChild(option);
+
+        let optionAddFlag = true;
+        //名前が被ってない時だけ選択フォームに追加
+        for (let i = 0; i < script_select.options.length; i++) {
+            const selectElement = script_select.options[i];
+            if (blockName == selectElement.value) {
+                optionAddFlag = false;
+                break;
+            }
+        }
+        if (optionAddFlag) {
+            let option = document.createElement("option");
+            option.text = blockName;
+            option.value = blockName;
+            script_select.appendChild(option);
+        }
+
+        //格納
+        scriptUI_blocks[key] = {xml:scriptUI_xml,code:scriptUI_code,name:key};
+    }
+
+    scriptUI_showScriptBlock();
 }
 
 let scriptUI_button_scriptSave = document.getElementById('button_scriptSave');
