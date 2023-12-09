@@ -43,12 +43,20 @@ var fileInput = document.getElementById('file');
 var files = null;
 let reader = new FileReader();
 var new_zip = new JSZip();
+//インポートしたコードたちを格納する変数の初期値
+const init_import_movements = {
+    main:{
+        xml:[],
+        json:[]
+    },
+    script:{}
+};
 //インポートしたコードたちを格納する変数
-var import_movements = {};
+var import_movements = init_import_movements;
 
 
 function import_zip(){
-    import_movements = {};
+    import_movements = init_import_movements;
     files = fileInput.files; // 選択されたファイルのリストを取得
     for (let i = 0; i < files.length; i++) { // 選択された各ファイルに対して繰り返し処理を行う
         let file = files[i]; // 現在処理中のファイルを取得
@@ -59,7 +67,24 @@ function import_zip(){
             let zip = new JSZip(); // JSZipオブジェクトを作成
             zip.loadAsync(fileContent).then(function(zip) { // 読み込んだファイルをZIPファイルとして解凍する
                 zip.forEach(function(relativePath, zipEntry) { // ZIPファイル内の各ファイルに対して繰り返し処理を行う
-                    if (!zipEntry.dir) { // ファイルの場合のみ処理を実行
+
+                    //フォルダの場合
+                    if (zipEntry.dir) {
+                        let folderReader = file.createReader();
+                        folderReader.readEntries(function (entries) {
+                            if (file.name === 'main') {
+                                // 'main'フォルダ内のファイルを処理
+                                processMainFolder(entries);
+                            } else if (file.name === 'script') {
+                                // 'script'フォルダ内のファイルを処理
+                                processScriptFolder(entries);
+                            } else {
+                                // その他のフォルダを処理
+                                processOtherFolders(file.name, entries);
+                            }
+                        })
+
+                    } else if (!zipEntry.dir) { // ファイルの場合のみ処理を実行
                         let fileExtension = zipEntry.name.split('.').pop(); // ファイルの拡張子を取得
                         if (fileExtension === 'json') { // JSONのファイルの場合のみ処理を実行
                             zipEntry.async("string").then(function(data) { // ファイルの内容を文字列として取得
@@ -86,6 +111,12 @@ function import_zip(){
     }
 
 }
+
+function file_save(relativePath,zipEntry){
+    
+
+}
+
 fileInput.addEventListener('change', import_zip);//zipファイルをアップロードした瞬間変数に中身を保存
 
 function loadMovementsToWorkspace(){//保存した変数の中身をワークスペースに反映
