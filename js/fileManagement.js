@@ -1,48 +1,11 @@
     // download file
-    function download(content, fileName, contentType) {
-        var a = document.createElement("a");
-        var file = new Blob([content], { type: contentType });
-        a.href = URL.createObjectURL(file);
-        a.download = fileName;
-        a.click();
-    }
-    // function save_json() {
-    //     var code = Blockly.JavaScript.workspaceToCode(workspace);
-    //     var codej = JSON.parse(code);
-    //     download(JSON.stringify(codej),'theaterScript.json','text/plain');
-    // }
-    // function save_xml() {
-    //     var xml = Blockly.Xml.workspaceToDom(workspace);
-    //     var myBlockXml = Blockly.Xml.domToText(xml);
-    //     download(myBlockXml,'theaterScriptBlock.xml','text/plain');
-    // }
-    // let button_json = document.getElementById('button_json');
-    // button_json.onclick = save_json;
-    // let button_xml = document.getElementById('button_xml');
-    // button_xml.onclick = save_xml;
-
-    // // import file
-    // // ファイルがアップロードされたらデータを取得
-    // var fileInput = document.getElementById('file');
-    // var files = null;
-    // let reader = new FileReader();
-    // function handleFileSelect(){
-    //     files = fileInput.files;
-    //     for(file of files){
-    //         reader.readAsText(file, 'UTF-8');
-    //     }
-    // }
-    // fileInput.addEventListener('change', handleFileSelect);
-
-    // function import_xml() {
-    //     if(files != null){
-    //         var xml = Blockly.Xml.textToDom(reader.result);
-    //         Blockly.Xml.clearWorkspaceAndLoadFromXml(xml,workspace);
-    //         console.log(files);
-    //     }
-    // }
-    // let button_create = document.getElementById('button_create');
-    // button_create.onclick = import_xml;
+function download(content, fileName, contentType) {
+    var a = document.createElement("a");
+    var file = new Blob([content], { type: contentType });
+    a.href = URL.createObjectURL(file);
+    a.download = fileName;
+    a.click();
+}
 
 function download_zip(){
     //保存するデータを変数に入れて持ってくる
@@ -80,20 +43,48 @@ var fileInput = document.getElementById('file');
 var files = null;
 let reader = new FileReader();
 var new_zip = new JSZip();
+//インポートしたコードたちを格納する変数
+var import_movements = {};
 
-function handleFileSelect(){
-    files = fileInput.files;
-    for(file of files){
-        new_zip.loadAsync(file);
-        // reader.readAsText(file, 'UTF-8');
-    }
-}
-fileInput.addEventListener('change', handleFileSelect);
 
 function import_zip(){
+    import_movements = {};
+    files = fileInput.files; // 選択されたファイルのリストを取得
+    for (let i = 0; i < files.length; i++) { // 選択された各ファイルに対して繰り返し処理を行う
+        let file = files[i]; // 現在処理中のファイルを取得
+        let reader = new FileReader(); // ファイル読み込み用のFileReaderオブジェクトを生成
+        reader.onload = function(event) { // ファイルの読み込み完了時に実行される処理を定義
+            let fileContent = event.target.result; // 読み込んだファイルの内容を取得
+
+            let zip = new JSZip(); // JSZipオブジェクトを作成
+            zip.loadAsync(fileContent).then(function(zip) { // 読み込んだファイルをZIPファイルとして解凍する
+                zip.forEach(function(relativePath, zipEntry) { // ZIPファイル内の各ファイルに対して繰り返し処理を行う
+                    if (!zipEntry.dir) { // ファイルの場合のみ処理を実行
+                        let fileExtension = zipEntry.name.split('.').pop(); // ファイルの拡張子を取得
+                        if (fileExtension === 'json' || fileExtension === 'xml') { // JSONかXMLのファイルの場合のみ処理を実行
+                            zipEntry.async("string").then(function(data) { // ファイルの内容を文字列として取得
+                                let folderPath = relativePath.substring(0, relativePath.lastIndexOf('/')); // フォルダのパスを取得
+                                if (!import_movements[folderPath]) { // フォルダが存在しない場合、新たに作成
+                                    import_movements[folderPath] = {};
+                                }
+                                import_movements[folderPath][zipEntry.name] = data; // フォルダ内のファイルを保存
+                            });
+                        }
+                    }
+                });
+            });
+        };
+        reader.readAsArrayBuffer(file); // ファイルをバイナリ形式で読み込む
+    }
+
+}
+fileInput.addEventListener('change', import_zip);//zipファイルをアップロードした瞬間変数に中身を保存
+
+function loadMovementsToWorkspace(){//保存した変数の中身をワークスペースに反映
     if(files != null){
-        var xml = Blockly.Xml.textToDom(reader.result);
-        Blockly.Xml.clearWorkspaceAndLoadFromXml(xml,workspace);
+
+        // var xml = Blockly.Xml.textToDom(reader.result);
+        // Blockly.Xml.clearWorkspaceAndLoadFromXml(xml,workspace);
         // console.log(files);
     }
 }

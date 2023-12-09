@@ -109,3 +109,13 @@ function mainUI_outputXMLandJSON(){
 
     return {xml:mainUI_xml,code:mainUI_code};
 }
+
+//現在の作業状況全部消す
+function mainUI_clearWorkingState(){
+    
+}
+
+//zipファイルのscriptフォルダから作業状況を復元
+function mainUI_restoreWorkingState(scriptUI_newData){
+
+}

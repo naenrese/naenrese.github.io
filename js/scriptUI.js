@@ -96,8 +96,14 @@ function scriptUI_showScriptBlock(){
     Blockly.Xml.clearWorkspaceAndLoadFromXml(blockXmlForShow,scriptUI_workspace);
 }
 
+//現在の作業状況全部消す
 function scriptUI_clearWorkingState(){
     
+}
+
+//zipファイルのscriptフォルダから作業状況を復元
+function scriptUI_restoreWorkingState(scriptUI_newData){
+
 }
 
 let scriptUI_button_scriptSave = document.getElementById('button_scriptSave');
