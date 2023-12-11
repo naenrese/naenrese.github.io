@@ -65,47 +65,50 @@ function import_zip(){
             let fileContent = event.target.result; // 読み込んだファイルの内容を取得
 
             let zip = new JSZip(); // JSZipオブジェクトを作成
-            zip.loadAsync(fileContent).then(function(zip) { // 読み込んだファイルをZIPファイルとして解凍する
-                zip.forEach(function(relativePath, zipEntry) { // ZIPファイル内の各ファイルに対して繰り返し処理を行う
+            // ファイルを読み込んで、mainフォルダとscriptフォルダの中身だけ処理する
+            zip.loadAsync(file)
+                .then(function (zip) {
+                    zip.forEach(function (relativePath, zipEntry) {
+                        // relativePathはエントリのパス（相対パス）
+                        // zipEntryは各エントリの詳細情報（JSZipObjectと呼ばれる）
 
-                    //フォルダの場合
-                    if (zipEntry.dir) {
-                        let folderReader = file.createReader();
-                        folderReader.readEntries(function (entries) {
-                            if (file.name === 'main') {
-                                // 'main'フォルダ内のファイルを処理
-                                processMainFolder(entries);
-                            } else if (file.name === 'script') {
-                                // 'script'フォルダ内のファイルを処理
-                                processScriptFolder(entries);
-                            } else {
-                                // その他のフォルダを処理
-                                processOtherFolders(file.name, entries);
+                        // mainフォルダ内のエントリのみを処理
+                        if (relativePath.startsWith('main/') && !zipEntry.dir) {
+                            console.log("mainフォルダ内のファイル:", relativePath);
+                                if (relativePath.endsWith('.xml')) {
+                                // mainフォルダ内のXMLファイル
+                                zipEntry.async("text").then(function (xmlContent) {
+                                    import_movements.main["xml"] = xmlContent;
+                                });
+                            } else if (relativePath.endsWith('.json')) {
+                                // mainフォルダ内のJSONファイル
+                                zipEntry.async("text").then(function (jsonContent) {
+                                    import_movements.main["json"] = jsonContent;
+                                });
                             }
-                        })
-
-                    } else if (!zipEntry.dir) { // ファイルの場合のみ処理を実行
-                        let fileExtension = zipEntry.name.split('.').pop(); // ファイルの拡張子を取得
-                        if (fileExtension === 'json') { // JSONのファイルの場合のみ処理を実行
-                            zipEntry.async("string").then(function(data) { // ファイルの内容を文字列として取得
-                                let folderPath = relativePath.substring(0, relativePath.lastIndexOf('/')); // フォルダのパスを取得
-                                if (!import_movements[folderPath]) { // フォルダが存在しない場合、新たに作成
-                                    import_movements[folderPath] = {};
-                                }
-                                import_movements[folderPath]["json"] = data; // フォルダ内のファイルを保存
-                            });
-                        } else if (fileExtension === 'xml'){// XMLのファイルの場合のみ処理を実行
-                            zipEntry.async("string").then(function(data) { // ファイルの内容を文字列として取得
-                                let folderPath = relativePath.substring(0, relativePath.lastIndexOf('/')); // フォルダのパスを取得
-                                if (!import_movements[folderPath]) { // フォルダが存在しない場合、新たに作成
-                                    import_movements[folderPath] = {};
-                                }
-                                import_movements[folderPath]["xml"] = data; // フォルダ内のファイルを保存
-                            });
                         }
-                    }
+
+                        // scriptフォルダ内のエントリのみを処理
+                        if (relativePath.startsWith('script/') && !zipEntry.dir) {
+                            console.log("scriptフォルダ内のファイル:", relativePath);
+                            // ここにscriptフォルダ内のファイルに対する処理を記述する
+                            let folders = relativePath.split('/');
+                            if (folders.length > 2) {//'script/'の後ろに何かしらのフォルダ名やファイル名が続いている場合に条件を満たす
+                                let folderName = folders[1];
+                                let fileType = folders[2].split('.')[1];
+                                if (!scriptData[folderName]) {
+                                    scriptData[folderName] = {};
+                                }
+                                zipEntry.async("text").then(function (content) {
+                                    if (!scriptData[folderName][fileType]) {
+                                        scriptData[folderName][fileType] = {};//キーの名前まだ完全に記述してないからここからやってください
+                                    }
+                                    scriptData[folderName][fileType][relativePath] = content;
+                                });
+                            }
+                        }
+                    });
                 });
-            });
         };
         reader.readAsArrayBuffer(file); // ファイルをバイナリ形式で読み込む
     }
