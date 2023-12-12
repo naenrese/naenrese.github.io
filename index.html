@@ -89,31 +89,7 @@
 
     <script>
 
-    // Define a function to populate script_selectOptions with options from script_select
-    function populateOptions() {
-        // Get a reference to the <select> element
-        var scriptSelectElement = document.getElementById("script_select");
-
-        // Create an empty array to store the options
-        script_selectOptions = [];
-
-        // Iterate through the <option> elements and populate script_selectOptions
-        for (var i = 0; i < scriptSelectElement.options.length; i++) {
-            var option = scriptSelectElement.options[i];
-            script_selectOptions.push([option.text, option.value]);
-        }
-
-        // You can now use script_selectOptions as needed
-        console.log(script_selectOptions);
-    }
-
-    // Get a reference to the button element
-    var button_populate_options = document.getElementById('button_populate_options');
-
-    // Associate the populateOptions function with the button's click event
-    button_populate_options.addEventListener('click', populateOptions);
-
-      </script>
+    </script>
 
 </body>
 </html>

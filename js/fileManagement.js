@@ -75,18 +75,18 @@ function import_zip(){
                         // mainフォルダ内のエントリのみを処理
                         if (relativePath.startsWith('main/') && !zipEntry.dir) {
                             console.log("mainフォルダ内のファイル:", relativePath);
-                                if (relativePath.endsWith('.xml')) {
-                                // mainフォルダ内のXMLファイル
-                                zipEntry.async("text").then(function (xmlContent) {
-                                    import_movements.main["xml"] = xmlContent;
-                                });
-                            } else if (relativePath.endsWith('.json')) {
-                                // mainフォルダ内のJSONファイル
-                                zipEntry.async("text").then(function (jsonContent) {
-                                    import_movements.main["json"] = jsonContent;
-                                });
-                            }
+                            if (relativePath.endsWith('.xml')) {
+                            // mainフォルダ内のXMLファイル
+                            zipEntry.async("text").then(function (xmlContent) {
+                                import_movements.main["xml"] = xmlContent;
+                            });
+                        } else if (relativePath.endsWith('.json')) {
+                            // mainフォルダ内のJSONファイル
+                            zipEntry.async("text").then(function (jsonContent) {
+                                import_movements.main["json"] = jsonContent;
+                            });
                         }
+                    }
 
                         // scriptフォルダ内のエントリのみを処理
                         if (relativePath.startsWith('script/') && !zipEntry.dir) {
@@ -96,14 +96,14 @@ function import_zip(){
                             if (folders.length > 2) {//'script/'の後ろに何かしらのフォルダ名やファイル名が続いている場合に条件を満たす
                                 let folderName = folders[1];
                                 let fileType = folders[2].split('.')[1];
-                                if (!scriptData[folderName]) {
-                                    scriptData[folderName] = {};
+                                if (!import_movements.script[folderName]) {
+                                    import_movements.script[folderName] = {};
                                 }
                                 zipEntry.async("text").then(function (content) {
-                                    if (!scriptData[folderName][fileType]) {
-                                        scriptData[folderName][fileType] = {};//キーの名前まだ完全に記述してないからここからやってください
+                                    if (!import_movements.script[folderName][fileType]) {
+                                        import_movements.script[folderName][fileType] = {};//キーの名前まだ完全に記述してないからここからやってください
                                     }
-                                    scriptData[folderName][fileType][relativePath] = content;
+                                    import_movements.script[folderName][fileType] = content;
                                 });
                             }
                         }
@@ -112,11 +112,6 @@ function import_zip(){
         };
         reader.readAsArrayBuffer(file); // ファイルをバイナリ形式で読み込む
     }
-
-}
-
-function file_save(relativePath,zipEntry){
-    
 
 }
 
@@ -130,6 +125,8 @@ function loadMovementsToWorkspace(){//保存した変数の中身をワークス
 
         mainUI_restoreWorkingState(mainUI_newData);
         scriptUI_restoreWorkingState(scriptUI_newData);
+        //mainUIに追加
+        populateOptions();
     }
 }
 

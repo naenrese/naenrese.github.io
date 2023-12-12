@@ -81,8 +81,6 @@ function scriptUI_saveScriptBlock(){
 
     //格納
     scriptUI_blocks[blockName] = {xml:scriptUI_xml,code:scriptUI_code,name:blockName};
-    //mainUIに追加
-    // mainUI_addScriptBlocks(blockName)
 }
 
 function scriptUI_showScriptBlock(){
@@ -98,33 +96,34 @@ function scriptUI_showScriptBlock(){
 function scriptUI_restoreWorkingState(scriptUI_newData){
     scriptUI_blocks = {};//保持してる中身全部消す
 
-    console.log(scriptUI_newData);
-    console.log("aaaa");
+    // console.log(scriptUI_newData);
+    // console.log("aaaa");
+
+    let script_select = document.getElementById("script_select");
+    script_select.innerHTML = '';
+    let option = document.createElement("option");
+    option.text = "new block";
+    option.value = "new_block";
+    script_select.appendChild(option);
 
     for (const key in scriptUI_newData) {
+        console.log(key);
         let scriptUI_xml = Blockly.Xml.textToDom(scriptUI_newData[key].xml);
         let scriptUI_code = scriptUI_newData[key].json;
-
-        let script_select = document.getElementById("script_select");
-        script_select.innerHTML = '';
-        let option = document.createElement("option");
-        option.text = "new_block";
-        option.value = "new block";
-        script_select.appendChild(option);
 
         let optionAddFlag = true;
         //名前が被ってない時だけ選択フォームに追加
         for (let i = 0; i < script_select.options.length; i++) {
             const selectElement = script_select.options[i];
-            if (blockName == selectElement.value) {
+            if (key == selectElement.value) {
                 optionAddFlag = false;
                 break;
             }
         }
         if (optionAddFlag) {
             let option = document.createElement("option");
-            option.text = blockName;
-            option.value = blockName;
+            option.text = key;
+            option.value = key;
             script_select.appendChild(option);
         }
 
