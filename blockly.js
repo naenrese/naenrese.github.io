@@ -19,12 +19,12 @@ Blockly.JavaScript['test_block'] = function(block) {
   var code = '\n\taaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa;\n';
   return code;
 };
+
 Blockly.JavaScript['script_create'] = function(block) {
   var text_name = block.getFieldValue('script_name');
   var statements_define = Blockly.JavaScript.statementToCode(block, 'define');
   var statements_name = Blockly.JavaScript.statementToCode(block, 'script');
   
-
   // 正式なJSONのフォーマットにする部分(define)
   var list_define =  statements_define.split("#...#");
   var text_statements_define = convertJSON(list_define)
@@ -38,6 +38,7 @@ Blockly.JavaScript['script_create'] = function(block) {
                 + '\n\t,\n\t"scripts":' + text_statements_script + '\n}';
   return code;
 };
+
 Blockly.JavaScript['character'] = function(block) {
   var text_name = block.getFieldValue('name');
   var dropdown_who = block.getFieldValue('who');
