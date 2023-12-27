@@ -123,10 +123,37 @@ function loadMovementsToWorkspace(){//保存した変数の中身をワークス
         let mainUI_newData = import_movements["main"];
         let scriptUI_newData = import_movements["script"];
 
-        mainUI_restoreWorkingState(mainUI_newData);
+        script_selectOptions = [];
+        
         scriptUI_restoreWorkingState(scriptUI_newData);
-        //mainUIに追加
-        populateOptions();
+        
+        // Get a reference to the <select> element
+        var scriptSelectElement = document.getElementById("script_select");
+
+        // Create an empty array to store the options
+        script_selectOptions = [];
+
+        // Iterate through the <option> elements and populate script_selectOptions
+        for (var i = 0; i < scriptSelectElement.options.length; i++) {
+            var option = scriptSelectElement.options[i];
+            script_selectOptions.push([option.text, option.value]);
+        }
+        
+        Blockly.Blocks['custom_dropdown'] = {
+            init: function() {
+              this.appendDummyInput()
+                  .appendField("Custom Dropdown:")
+                  .appendField(new Blockly.FieldDropdown(script_selectOptions), "dropdown_name");
+              this.setPreviousStatement(true, null);
+              this.setNextStatement(true, null);
+              this.setColour(210);
+              this.setTooltip("");
+              this.setHelpUrl("");
+            }
+          };//この処理の順番じゃないと壊れます
+        mainUI_restoreWorkingState(mainUI_newData);
+        scriptUI_showScriptBlock();
+        
     }
 }
 

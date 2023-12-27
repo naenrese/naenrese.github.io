@@ -4,20 +4,25 @@ mainUI_toolbox += '<category name="Basis" colour="#0000FF">'
 mainUI_toolbox += '<block type="script_create"></block>';
 mainUI_toolbox += '  </category>';
 
-mainUI_toolbox += '<category name="Define" colour="#0000FF">'
-mainUI_toolbox += '<block type="robot_define"></block>';
-// mainUI_toolbox += '<block type="person_define"></block>';
-// mainUI_toolbox += '<block type="object_define"></block>';
+mainUI_toolbox += '<category name="Characters" colour="#0000FF">'
+mainUI_toolbox += '<block type="Pepper_character"></block>';
+mainUI_toolbox += '<block type="NAO_character"></block>';
+mainUI_toolbox += '<block type="person_character"></block>';
+mainUI_toolbox += '<block type="object_character"></block>';
 mainUI_toolbox += '  </category>';
 
-mainUI_toolbox += '<category name="Movement" colour="#000080">'
-mainUI_toolbox += '<block type="word"></block>';
-// mainUI_toolbox += '<block type="location"></block>';
-// mainUI_toolbox += '<block type="animation"></block>';
+mainUI_toolbox += '<category name="Pepper" colour="#000080">'
+mainUI_toolbox += '<block type="word_Pepper"></block>';
+mainUI_toolbox += '<block type="location_Pepper"></block>';
+mainUI_toolbox += '<block type="animation_Pepper"></block>';
+mainUI_toolbox += '<block type="touch_robot_Pepper"></block>';
 mainUI_toolbox += '  </category>';
 
-mainUI_toolbox += '<category name="Robot Interaction" colour="#800080">'
-mainUI_toolbox += '<block type="touch_robot"></block>';
+mainUI_toolbox += '<category name="NAO" colour="#000080">'
+mainUI_toolbox += '<block type="word_NAO"></block>';
+mainUI_toolbox += '<block type="location_NAO"></block>';
+mainUI_toolbox += '<block type="animation_NAO"></block>';
+mainUI_toolbox += '<block type="touch_robot_NAO"></block>';
 mainUI_toolbox += '  </category>';
 
 mainUI_toolbox += '<category name="Original Block" colour="#ffc71f">'
@@ -116,9 +121,6 @@ function mainUI_restoreWorkingState(mainUI_newData){
 
     Blockly.Xml.clearWorkspaceAndLoadFromXml(blockXmlForShow,mainUI_workspace);
 }
-
-
-
 
 
 // Define a function to populate script_selectOptions with options from script_select

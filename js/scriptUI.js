@@ -4,16 +4,19 @@ scriptUI_toolbox += '<category name="Basis" colour="#0000FF">'
 scriptUI_toolbox += '<block type="newBlock_create"></block>';
 scriptUI_toolbox += '  </category>';
 
-scriptUI_toolbox += '<category name="Movement" colour="#000080">'
-scriptUI_toolbox += '<block type="word"></block>';
-scriptUI_toolbox += '<block type="location"></block>';
-scriptUI_toolbox += '<block type="animation"></block>';
+scriptUI_toolbox += '<category name="Pepper" colour="#000080">'
+scriptUI_toolbox += '<block type="word_Pepper"></block>';
+scriptUI_toolbox += '<block type="location_Pepper"></block>';
+scriptUI_toolbox += '<block type="animation_Pepper"></block>';
+scriptUI_toolbox += '<block type="touch_robot_Pepper"></block>';
 scriptUI_toolbox += '  </category>';
 
-scriptUI_toolbox += '<category name="Robot Interaction" colour="#800080">'
-scriptUI_toolbox += '<block type="touch_robot"></block>';
+scriptUI_toolbox += '<category name="NAO" colour="#000080">'
+scriptUI_toolbox += '<block type="word_NAO"></block>';
+scriptUI_toolbox += '<block type="location_NAO"></block>';
+scriptUI_toolbox += '<block type="animation_NAO"></block>';
+scriptUI_toolbox += '<block type="touch_robot_NAO"></block>';
 scriptUI_toolbox += '  </category>';
-
 
 scriptUI_toolbox += '<sep></sep>';
 scriptUI_toolbox += '</xml>';
@@ -79,6 +82,18 @@ function scriptUI_saveScriptBlock(){
         script_select.appendChild(option);
     }
 
+        // Get a reference to the <select> element
+        var scriptSelectElement = document.getElementById("script_select");
+
+        // Create an empty array to store the options
+        script_selectOptions = [];
+    
+        // Iterate through the <option> elements and populate script_selectOptions
+        for (var i = 0; i < scriptSelectElement.options.length; i++) {
+            var option = scriptSelectElement.options[i];
+            script_selectOptions.push([option.text, option.value]);
+        }
+
     //格納
     scriptUI_blocks[blockName] = {xml:scriptUI_xml,code:scriptUI_code,name:blockName};
 }
@@ -131,7 +146,7 @@ function scriptUI_restoreWorkingState(scriptUI_newData){
         scriptUI_blocks[key] = {xml:scriptUI_xml,code:scriptUI_code,name:key};
     }
 
-    scriptUI_showScriptBlock();
+    // scriptUI_showScriptBlock();
 }
 
 let scriptUI_button_scriptSave = document.getElementById('button_scriptSave');
