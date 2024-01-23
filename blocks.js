@@ -16,8 +16,8 @@ Blockly.Blocks['script_create'] = {
     this.appendDummyInput()
         .appendField("script name")
         .appendField(new Blockly.FieldTextInput('default name'),"script_name");
-    this.appendStatementInput("define")
-        .appendField("define");
+    this.appendStatementInput("character")
+        .appendField("character");
     this.appendStatementInput("script")
         .appendField("script");
     this.setInputsInline(true);
@@ -55,7 +55,7 @@ Blockly.Blocks['Pepper_character'] = {
         .appendField("angle")
         .appendField(new Blockly.FieldNumber(0), "location_angle")
         .appendField("ip adress")
-        .appendField(new Blockly.FieldTextInput("192.168.11.30"), "ip");
+        .appendField(new Blockly.FieldTextInput("10.146.0.11"), "ip");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(290);
@@ -76,7 +76,7 @@ Blockly.Blocks['NAO_character'] = {
         .appendField("angle")
         .appendField(new Blockly.FieldNumber(0), "location_angle")
         .appendField("ip adress")
-        .appendField(new Blockly.FieldTextInput("192.168.11.30"), "ip");
+        .appendField(new Blockly.FieldTextInput("169.254.205.214"), "ip");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(290);

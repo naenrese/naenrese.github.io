@@ -14,7 +14,7 @@ scriptUI_toolbox += '  </category>';
 scriptUI_toolbox += '<category name="NAO" colour="#000080">'
 scriptUI_toolbox += '<block type="word_NAO"></block>';
 scriptUI_toolbox += '<block type="location_NAO"></block>';
-scriptUI_toolbox += '<block type="animation_NAO"></block>';
+// scriptUI_toolbox += '<block type="animation_NAO"></block>';
 scriptUI_toolbox += '<block type="touch_robot_NAO"></block>';
 scriptUI_toolbox += '  </category>';
 
