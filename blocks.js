@@ -45,7 +45,7 @@ Blockly.Blocks['character'] = {
 Blockly.Blocks['Pepper_character'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("robot name")
+        .appendField("Pepper name")
         .appendField(new Blockly.FieldTextInput("Pepper"), "name")
         .appendField("location")
         .appendField("x")
@@ -66,7 +66,7 @@ Blockly.Blocks['Pepper_character'] = {
 Blockly.Blocks['NAO_character'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("robot name")
+        .appendField("NAO name")
         .appendField(new Blockly.FieldTextInput("NAO"), "name")
         .appendField("location")
         .appendField("x")
