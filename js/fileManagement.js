@@ -33,9 +33,9 @@ function download_zip(){
 
     zip.generateAsync({type:"blob"})
     .then(function(content){
-        let file_name = "sample"
-        if (document.getElementById('download_name').value) {
-            file_name = document.getElementById('download_name').value;
+        let file_name = document.getElementById('download_name').value
+        if (file_name == "") {
+            file_name = "sample";
         }
         download(content,file_name+'.zip','application');
     });
