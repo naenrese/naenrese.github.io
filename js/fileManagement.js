@@ -33,7 +33,11 @@ function download_zip(){
 
     zip.generateAsync({type:"blob"})
     .then(function(content){
-        download(content,'sample.zip','application');
+        let file_name = "sample"
+        if (document.getElementById('download_name').value) {
+            file_name = document.getElementById('download_name').value;
+        }
+        download(content,file_name+'.zip','application');
     });
 }
 
