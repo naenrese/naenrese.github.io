@@ -1,4 +1,9 @@
-    // download file
+// UTF-8のBOMを追加する関数
+function addBOM(content) {
+    return '\uFEFF' + content;
+}
+
+// download file
 function download(content, fileName, contentType) {
     var a = document.createElement("a");
     var file = new Blob([content], { type: contentType });
