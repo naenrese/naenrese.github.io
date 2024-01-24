@@ -7,8 +7,8 @@ mainUI_toolbox += '  </category>';
 mainUI_toolbox += '<category name="Characters" colour="#0000FF">'
 mainUI_toolbox += '<block type="Pepper_character"></block>';
 mainUI_toolbox += '<block type="NAO_character"></block>';
-mainUI_toolbox += '<block type="person_character"></block>';
-mainUI_toolbox += '<block type="object_character"></block>';
+// mainUI_toolbox += '<block type="person_character"></block>';
+// mainUI_toolbox += '<block type="object_character"></block>';
 mainUI_toolbox += '  </category>';
 
 mainUI_toolbox += '<category name="Pepper" colour="#000080">'
