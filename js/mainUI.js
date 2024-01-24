@@ -20,7 +20,7 @@ mainUI_toolbox += '  </category>';
 
 mainUI_toolbox += '<category name="NAO" colour="#000080">'
 mainUI_toolbox += '<block type="word_NAO"></block>';
-mainUI_toolbox += '<block type="location_NAO"></block>';
+// mainUI_toolbox += '<block type="location_NAO"></block>';
 // mainUI_toolbox += '<block type="animation_NAO"></block>';
 mainUI_toolbox += '<block type="touch_robot_NAO"></block>';
 mainUI_toolbox += '  </category>';
