@@ -183,8 +183,9 @@ Blockly.Blocks['animation_Pepper'] = {
             ["curious","curious"],
             ["elephant","elephant"],
             ["kisses","kisses"],
-            ["thinking","thinking"],
-            ["wave","wave"]
+            ["thinking","thinking"]
+            // ,
+            // ["wave","wave"]
             
             // ["IDontKnow","IDontKnow"],
             // ["Hey","Hey"],
